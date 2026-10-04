@@ -3,36 +3,37 @@ const orderButtons = document.querySelectorAll('.product-card__button');
 const closeDialogButton = document.getElementById('close-order-dialog');
 const selectedProductInput = document.getElementById('selected-product');
 
-orderButtons.forEach((button) => {
+if (orderButtons.length && orderDialog && selectedProductInput) {
+  orderButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      const productName = button.dataset.product;
-      selectedProductInput.value = productName;
+      selectedProductInput.value = button.dataset.product;
       orderDialog.showModal();
     });
-});
+  });
+}
 
-closeDialogButton.addEventListener('click', () => {
+if (closeDialogButton && orderDialog) {
+  closeDialogButton.addEventListener('click', () => {
     orderDialog.close();
-});
+  });
+}
 
 const orderForm = document.getElementById('order-form');
 const successMessage = document.getElementById('success-message');
 
-orderForm.addEventListener('submit', (event) => {
+if (orderForm && successMessage) {
+  orderForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-
     const formElements = Array.from(orderForm.elements);
-    formElements.forEach((element) => {
-      if (element.willValidate) {
-        element.removeAttribute('aria-invalid');
-      }
+    formElements.forEach((el) => {
+      if (el.willValidate) el.removeAttribute('aria-invalid');
     });
 
     if (!orderForm.checkValidity()) {
-      formElements.forEach((element) => {
-        if (element.willValidate && !element.checkValidity()) {
-          element.setAttribute('aria-invalid', 'true');
+      formElements.forEach((el) => {
+        if (el.willValidate && !el.checkValidity()) {
+          el.setAttribute('aria-invalid', 'true');
         }
       });
       orderForm.reportValidity();
@@ -42,4 +43,40 @@ orderForm.addEventListener('submit', (event) => {
     successMessage.hidden = false;
     orderForm.reset();
     orderDialog.close();
-});
+  });
+}
+
+const orderFormPage = document.getElementById('order-form-page');
+const pageSuccessMessage = document.getElementById('page-success-message');
+
+if (orderFormPage && pageSuccessMessage) {
+  orderFormPage.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formElements = Array.from(orderFormPage.elements);
+    formElements.forEach((el) => {
+      if (el.willValidate) el.removeAttribute('aria-invalid');
+    });
+
+    if (!orderFormPage.checkValidity()) {
+      formElements.forEach((el) => {
+        if (el.willValidate && !el.checkValidity()) {
+          el.setAttribute('aria-invalid', 'true');
+        }
+      });
+      orderFormPage.reportValidity();
+      return;
+    }
+
+    pageSuccessMessage.hidden = false;
+    orderFormPage.reset();
+  });
+}
+
+const toTopButton = document.getElementById('to-top');
+
+if (toTopButton) {
+  toTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}

@@ -186,7 +186,7 @@
   
   .hero {
     max-width: var(--container-width);
-    margin: 0 auto var(--space-xl);
+    margin: 30px auto var(--space-xl);
     padding: var(--space-xl) var(--space-lg);
     background-color: var(--color-surface-accent);
     border-radius: var(--radius-lg);
@@ -418,4 +418,111 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     font: inherit;
+  }
+
+/* ======================= 19. Позиционирование: бейджи в карточках ======================= */
+
+   .product-card {
+    position: relative;
+  }
+  
+  .product-card__badge {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    padding: 4px 8px;
+    color: var(--color-white);
+    background-color: var(--color-danger);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 1;
+  }
+  
+  .product-card--discount .product-card__badge {
+    background-color: var(--color-danger);
+  }
+  
+  /* ======================= 20. Модификатор: одиночная карточка товара ======================= */
+  
+  .product-card--single {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  
+  /* ======================= 21. Таблица характеристик ======================= */
+  
+  .product-table {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: var(--color-bg);
+  }
+  
+  .product-table caption {
+    caption-side: top;
+    margin-bottom: var(--space-md);
+    font-weight: 700;
+    text-align: left;
+  }
+  
+  .product-table th,
+  .product-table td {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    text-align: left;
+  }
+  
+  .product-table th {
+    background-color: var(--color-surface);
+    font-weight: 700;
+  }
+  
+  /* ======================= 22. Форма на отдельной странице ======================= */
+  
+  .order-form--page {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg);
+  }
+  
+  /* ======================= 23. Sticky-навигация ======================= */
+  
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  /* ======================= 24. Кнопка «Наверх» (fixed) ======================= */
+  
+  .to-top {
+    position: fixed;
+    right: var(--space-lg);
+    bottom: var(--space-lg);
+    z-index: 20;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .to-top:hover {
+    background-color: var(--color-primary-dark);
+  }
+  
+  .to-top:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
   }
